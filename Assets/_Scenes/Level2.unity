@@ -138,7 +138,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 191ecadc944b938478d0a207ef7205b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalSpeed: 0.4
+  horizontalSpeed: 0.01
   resetPosition: 10.68
   resetPoint: -14.46
 --- !u!1 &260242427 stripped
@@ -159,7 +159,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 191ecadc944b938478d0a207ef7205b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  horizontalSpeed: 0.4
+  horizontalSpeed: 0.01
   resetPosition: 10.68
   resetPoint: -14.46
 --- !u!1 &519420028
@@ -490,7 +490,7 @@ PrefabInstance:
     - target: {fileID: 1611093553563445763, guid: 887c5bee811983a4cb06f9ea66643b36,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -2.3
+      value: -2.98
       objectReference: {fileID: 0}
     - target: {fileID: 1611093553563445763, guid: 887c5bee811983a4cb06f9ea66643b36,
         type: 3}
@@ -547,6 +547,36 @@ PrefabInstance:
       propertyPath: gameController
       value: 
       objectReference: {fileID: 2019295050}
+    - target: {fileID: 1611093553563445789, guid: 887c5bee811983a4cb06f9ea66643b36,
+        type: 3}
+      propertyPath: boundary.Right
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611093553563445789, guid: 887c5bee811983a4cb06f9ea66643b36,
+        type: 3}
+      propertyPath: boundary.Left
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611093553563445789, guid: 887c5bee811983a4cb06f9ea66643b36,
+        type: 3}
+      propertyPath: boundary.Top
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611093553563445789, guid: 887c5bee811983a4cb06f9ea66643b36,
+        type: 3}
+      propertyPath: boundary.Bottom
+      value: -1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611093553563445789, guid: 887c5bee811983a4cb06f9ea66643b36,
+        type: 3}
+      propertyPath: speed.min
+      value: 0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 1611093553563445789, guid: 887c5bee811983a4cb06f9ea66643b36,
+        type: 3}
+      propertyPath: speed.max
+      value: 0.05
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 887c5bee811983a4cb06f9ea66643b36, type: 3}
 --- !u!1001 &6258031004616284574

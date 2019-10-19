@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Util;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -24,16 +25,21 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (transform.rotation.z == -90)
+        // Gets the active game scene/level and then decides which player controls to use
+        switch (SceneManager.GetActiveScene().name)
         {
-            Move();
-            CheckBounds();
+            case "Main":
+                Move();
+                CheckBounds();
+                break;
+            case "Level2":
+                MoveUpDown();
+                CheckBoundsUpDown();
+                break;
         }
-        else if(transform.rotation.z == -90)
-        {
-            MoveUpDown();
-            CheckBoundsUpDown();
-        }
+        
+           
+        
         
     }
     
@@ -87,18 +93,8 @@ public class PlayerController : MonoBehaviour
 
     public void MoveUpDown()
     {
-        //Gets Horizontal and Vertical axis and make the player move.
+        //Gets  Vertical axis and make the player move.
         Vector2 currentPosition = transform.position;
-
-        if (Input.GetAxis("Horizontal") > 0)
-        {
-            currentPosition += new Vector2(speed.max, 0.0f);
-        }
-
-        if (Input.GetAxis("Horizontal") < 0)
-        {
-            currentPosition -= new Vector2(speed.min, 0.0f);
-        }
 
         if (Input.GetAxisRaw("Vertical") > 0.0f)
         {
@@ -107,6 +103,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetAxisRaw("Vertical") < 0.0f)
         {
             currentPosition -= new Vector2(0.0f, speed.min);
+            Debug.Log("Working");
         }
 
         transform.position = currentPosition;
@@ -115,15 +112,7 @@ public class PlayerController : MonoBehaviour
     public void CheckBoundsUpDown()
     {
         //Restricts the player in boundaries
-        if (transform.position.x > boundary.Right)
-        {
-            transform.position = new Vector2(boundary.Right, transform.position.y);
-        }
-
-        if (transform.position.x < boundary.Left)
-        {
-            transform.position = new Vector2(boundary.Left, transform.position.y);
-        }
+     
         if (transform.position.y > boundary.Top)
         {
             transform.position = new Vector2(transform.position.x, boundary.Top);
