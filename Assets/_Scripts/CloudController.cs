@@ -28,8 +28,13 @@ public class CloudController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Gets the nanme of the scene and player controls changes according to the scene
         switch (SceneManager.GetActiveScene().name)
         {
+            case "Start":
+                Move();
+                CheckBounds();
+                break;
             case "Main":
                 Move();
                 CheckBounds();
@@ -38,11 +43,15 @@ public class CloudController : MonoBehaviour
                 MoveLeftRight();
                 CheckBoundsLeftRight();
                 break;
+            case "End":
+                Move();
+                CheckBounds();
+                break;
         }
     }
 
     /// <summary>
-    /// This method moves the ocean down the screen by verticalSpeed
+    /// This method moves the cloud down the screen by verticalSpeed
     /// </summary>
     void Move()
     {
@@ -53,6 +62,7 @@ public class CloudController : MonoBehaviour
         transform.position = currentPosition;
     }
 
+    /// This method moves the cloud right to left the screen by horizontalSpeed
 
     void MoveLeftRight()
     {
@@ -65,12 +75,19 @@ public class CloudController : MonoBehaviour
 
 
     /// <summary>
-    /// This method resets the ocean to the resetPosition
+    /// This method resets the cloud to the resetPosition
     /// </summary>
     void Reset()
     {
         switch (SceneManager.GetActiveScene().name)
         {
+            case "Start":
+                horizontalSpeed = Random.Range(horizontalSpeedRange.min, horizontalSpeedRange.max);
+                verticalSpeed = Random.Range(verticalSpeedRange.min, verticalSpeedRange.max);
+
+                float randomPosition = Random.Range(boundary.Left, boundary.Right);
+                transform.position = new Vector2(randomPosition, Random.Range(boundary.Top, boundary.Top + 2.0f));
+                break;
             case "Main":
 
                 horizontalSpeed = Random.Range(horizontalSpeedRange.min, horizontalSpeedRange.max);
@@ -91,7 +108,7 @@ public class CloudController : MonoBehaviour
     }
 
     /// <summary>
-    /// This method checks if the ocean reaches the lower boundary
+    /// This method checks if the cloud reaches the lower boundary
     /// and then it Resets it
     /// </summary>
     void CheckBounds()
@@ -101,6 +118,9 @@ public class CloudController : MonoBehaviour
             Reset();
         }
     }
+
+    /// This method checks if the cloud reaches the left boundary
+    /// and then it Resets it
     void CheckBoundsLeftRight()
     {
         if (transform.position.x <= boundary.Left)

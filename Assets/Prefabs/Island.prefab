@@ -94,8 +94,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 336f9a21a374e554dbef9236951dddaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  verticalSpeed: 0.05
-  horizontalSpeed: 0.05
+  verticalSpeed: 0.04
+  horizontalSpeed: 0.04
   boundary:
     Top: 2.8
     Right: 3.7

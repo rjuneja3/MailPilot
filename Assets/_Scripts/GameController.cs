@@ -53,22 +53,17 @@ public class GameController : MonoBehaviour
         set
         {
             _lives = value;
-            if(_lives < 1)
+            if (_lives < 1)
             {
-                
                 SceneManager.LoadScene("End");
             }
-            else if(lives.GetComponent<Lives>().lives < _lives)
-            {
-                lives.GetComponent<Lives>().lives = _lives;
-                livesLabel.text = "Lives: " + _lives.ToString();
-            }
+
             else
             {
+                lives.GetComponent<ScoreBoard>().lives = _lives;
                 livesLabel.text = "Lives: " + _lives.ToString();
-                
             }
-           
+
         }
     }
 
@@ -82,16 +77,20 @@ public class GameController : MonoBehaviour
         set
         {
             _score = value;
-
-
-            if (Score == 500)
+            score.GetComponent<ScoreBoard>().score = _score;
+            //Checks if the player reaches 500 scores and if the scene is main it moves the player to level2
+            if (_score >= 500 && SceneManager.GetActiveScene().name == "Main") 
             {
+
                 SceneManager.LoadScene("Level2");
+                _score = 500;
             }
-            else if (highScore.GetComponent<HighScore>().highScore < _score)
+            //Checks if the player reaches a high score, it saves the score to  highScore Variable in scoreboard
+            else if (highScore.GetComponent<ScoreBoard>().highScore < _score)
             {
-                highScore.GetComponent<HighScore>().highScore = _score;
+                highScore.GetComponent<ScoreBoard>().highScore = _score;
             }
+          
             scoreLabel.text = "Score: " + _score.ToString();
         }
     }
@@ -105,9 +104,9 @@ public class GameController : MonoBehaviour
 
     private void GameObjectInitialization()
     {
-        highScore = GameObject.Find("HighScore");
-        lives = GameObject.Find("Lives");
-        score = GameObject.Find("Score");
+        highScore = GameObject.Find("ScoreBoard");
+        lives = GameObject.Find("ScoreBoard");
+        score = GameObject.Find("ScoreBoard");
         startLabel = GameObject.Find("StartLabel");
         endLabel = GameObject.Find("EndLabel");
         startButton = GameObject.Find("StartButton");
@@ -121,6 +120,7 @@ public class GameController : MonoBehaviour
         switch (SceneManager.GetActiveScene().name)
         {
             case "Start":
+
                 scoreLabel.enabled = false;
                 livesLabel.enabled = false;
                 highScoreLabel.enabled = false;
@@ -129,6 +129,8 @@ public class GameController : MonoBehaviour
                 activeSoundClip = SoundClip.NONE;
                 break;
             case "Main":
+                Lives = 5;
+                Score = 0;
                 highScoreLabel.enabled = false;
                 startLabel.SetActive(false);
                 startButton.SetActive(false);
@@ -137,6 +139,9 @@ public class GameController : MonoBehaviour
                 activeSoundClip = SoundClip.ENGINE;
                 break;
             case "Level2":
+                Lives = lives.GetComponent<ScoreBoard>().lives;
+                Score = score.GetComponent<ScoreBoard>().score;
+
                 highScoreLabel.enabled = false;
                 startLabel.SetActive(false);
                 startButton.SetActive(false);
@@ -150,12 +155,11 @@ public class GameController : MonoBehaviour
                 startLabel.SetActive(false);
                 startButton.SetActive(false);
                 activeSoundClip = SoundClip.NONE;
-                highScoreLabel.text = "High Score: " + highScore.GetComponent<HighScore>().highScore;
+                highScoreLabel.text = "High Score: " + highScore.GetComponent<ScoreBoard>().highScore;
                 break;
         }
 
-        Lives = 5;
-        Score = 0;
+        
 
 
         if ((activeSoundClip != SoundClip.NONE) && (activeSoundClip != SoundClip.NUM_OF_CLIPS))
@@ -183,7 +187,7 @@ public class GameController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
     // Event Handlers

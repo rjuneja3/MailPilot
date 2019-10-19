@@ -20,8 +20,13 @@ public class IslandController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Gets the nanme of the scene and cloud movement changes according to the scene
         switch (SceneManager.GetActiveScene().name)
         {
+            case "Start":
+                Move();
+                CheckBounds();
+                break;
             case "Main":
                 Move();
                 CheckBounds();
@@ -29,6 +34,10 @@ public class IslandController : MonoBehaviour
             case "Level2":
                 MoveLeftRight();
                 CheckBoundsLeftRight();
+                break;
+            case "End":
+                Move();
+                CheckBounds();
                 break;
         }
     }
@@ -46,7 +55,7 @@ public class IslandController : MonoBehaviour
     }
 
     /// <summary>
-    /// This method moves the ocean down the screen by verticalSpeed
+    /// This method moves the ocean right to left the screen by horizontalSpeed
     /// </summary>
     void MoveLeftRight()
     {
@@ -64,6 +73,10 @@ public class IslandController : MonoBehaviour
     {
         switch (SceneManager.GetActiveScene().name)
         {
+            case "Start":
+                float randomPosition = Random.Range(boundary.Left, boundary.Right);
+                transform.position = new Vector2(randomPosition, boundary.Top);
+                break;
             case "Main":
                 float randomXPosition = Random.Range(boundary.Left, boundary.Right);
                 transform.position = new Vector2(randomXPosition, boundary.Top);
@@ -87,7 +100,8 @@ public class IslandController : MonoBehaviour
             Reset();
         }
     }
-
+    /// This method checks if the ocean reaches the left boundary
+    /// and then it Resets it
     void CheckBoundsLeftRight()
     {
         if (transform.position.x <= boundary.Left)

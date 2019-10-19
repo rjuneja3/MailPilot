@@ -103,7 +103,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetAxisRaw("Vertical") < 0.0f)
         {
             currentPosition -= new Vector2(0.0f, speed.min);
-            Debug.Log("Working");
+           
         }
 
         transform.position = currentPosition;
