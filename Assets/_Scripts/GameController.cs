@@ -22,12 +22,17 @@ public class GameController : MonoBehaviour
 
     [SerializeField]
     private int _score;
+    private int _highScore;
+
+
 
     public Text livesLabel;
     public Text scoreLabel;
     public Text highScoreLabel;
 
     public GameObject highScore;
+    public GameObject score;
+
 
     [Header("UI Control")]
     public GameObject startLabel;
@@ -70,9 +75,12 @@ public class GameController : MonoBehaviour
         {
             _score = value;
 
-            
 
-            if (highScore.GetComponent<HighScore>().score < _score)
+            if (Score == 500)
+            {
+                SceneManager.LoadScene("Level2");
+            }
+            else if (highScore.GetComponent<HighScore>().score < _score)
             {
                 highScore.GetComponent<HighScore>().score = _score;
             }
@@ -90,7 +98,7 @@ public class GameController : MonoBehaviour
     private void GameObjectInitialization()
     {
         highScore = GameObject.Find("HighScore");
-
+        score = GameObject.Find("Score");
         startLabel = GameObject.Find("StartLabel");
         endLabel = GameObject.Find("EndLabel");
         startButton = GameObject.Find("StartButton");
@@ -173,6 +181,7 @@ public class GameController : MonoBehaviour
     public void OnStartButtonClick()
     {
         DontDestroyOnLoad(highScore);
+
         SceneManager.LoadScene("Main");
     }
 

@@ -558,6 +558,11 @@ PrefabInstance:
       propertyPath: highScoreLabel
       value: 
       objectReference: {fileID: 6485742443663585370}
+    - target: {fileID: 6258031004218500820, guid: 0cd6714592b08874d95701663d2115fa,
+        type: 3}
+      propertyPath: numberOfClouds
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6258031004218500823, guid: 0cd6714592b08874d95701663d2115fa,
         type: 3}
       propertyPath: m_LocalPosition.x
