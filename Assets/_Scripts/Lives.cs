@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class HighScore : MonoBehaviour
+public class Lives : MonoBehaviour
 {
 
-    public int highScore;
-
+    public int lives;
 
 }

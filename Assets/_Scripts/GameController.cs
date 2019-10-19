@@ -32,6 +32,8 @@ public class GameController : MonoBehaviour
 
     public GameObject highScore;
     public GameObject score;
+    public GameObject lives;
+
 
 
     [Header("UI Control")]
@@ -56,9 +58,15 @@ public class GameController : MonoBehaviour
                 
                 SceneManager.LoadScene("End");
             }
+            else if(lives.GetComponent<Lives>().lives < _lives)
+            {
+                lives.GetComponent<Lives>().lives = _lives;
+                livesLabel.text = "Lives: " + _lives.ToString();
+            }
             else
             {
                 livesLabel.text = "Lives: " + _lives.ToString();
+                
             }
            
         }
@@ -80,9 +88,9 @@ public class GameController : MonoBehaviour
             {
                 SceneManager.LoadScene("Level2");
             }
-            else if (highScore.GetComponent<HighScore>().score < _score)
+            else if (highScore.GetComponent<HighScore>().highScore < _score)
             {
-                highScore.GetComponent<HighScore>().score = _score;
+                highScore.GetComponent<HighScore>().highScore = _score;
             }
             scoreLabel.text = "Score: " + _score.ToString();
         }
@@ -98,6 +106,7 @@ public class GameController : MonoBehaviour
     private void GameObjectInitialization()
     {
         highScore = GameObject.Find("HighScore");
+        lives = GameObject.Find("Lives");
         score = GameObject.Find("Score");
         startLabel = GameObject.Find("StartLabel");
         endLabel = GameObject.Find("EndLabel");
@@ -141,7 +150,7 @@ public class GameController : MonoBehaviour
                 startLabel.SetActive(false);
                 startButton.SetActive(false);
                 activeSoundClip = SoundClip.NONE;
-                highScoreLabel.text = "High Score: " + highScore.GetComponent<HighScore>().score;
+                highScoreLabel.text = "High Score: " + highScore.GetComponent<HighScore>().highScore;
                 break;
         }
 
@@ -181,7 +190,8 @@ public class GameController : MonoBehaviour
     public void OnStartButtonClick()
     {
         DontDestroyOnLoad(highScore);
-
+        DontDestroyOnLoad(lives);
+        DontDestroyOnLoad(score);
         SceneManager.LoadScene("Main");
     }
 

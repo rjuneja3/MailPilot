@@ -100,13 +100,13 @@ MonoBehaviour:
   verticalSpeedRange:
     min: 0.05
     max: 0.08
-  verticalSpeed: 0
-  horizontalSpeed: 0
+  verticalSpeed: 0.1
+  horizontalSpeed: 0.1
   boundary:
     Top: 3.28
-    Right: 2.063
+    Right: 4.6
     Bottom: -3.28
-    Left: -2.063
+    Left: -4.6
 --- !u!60 &6213664311500089984
 PolygonCollider2D:
   m_ObjectHideFlags: 0
