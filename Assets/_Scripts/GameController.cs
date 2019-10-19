@@ -119,6 +119,14 @@ public class GameController : MonoBehaviour
                 restartButton.SetActive(false);
                 activeSoundClip = SoundClip.ENGINE;
                 break;
+            case "Level2":
+                highScoreLabel.enabled = false;
+                startLabel.SetActive(false);
+                startButton.SetActive(false);
+                endLabel.SetActive(false);
+                restartButton.SetActive(false);
+                activeSoundClip = SoundClip.ENGINE;
+                break;
             case "End":
                 scoreLabel.enabled = false;
                 livesLabel.enabled = false;
